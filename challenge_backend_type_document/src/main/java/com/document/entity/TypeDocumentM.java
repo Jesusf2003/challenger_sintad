@@ -12,7 +12,7 @@ public class TypeDocumentM {
 
 	@Id
 	@Column(name = "id_tipo_documento")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
 
 	@Column(name = "codigo")
