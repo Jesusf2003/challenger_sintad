@@ -12,6 +12,7 @@ public class EntityM {
 
 	@Id
 	@Column(name = "id_entidad")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long id;
 	
 	@Column(name = "id_tipo_documento")
@@ -32,6 +33,6 @@ public class EntityM {
 	@Column(name = "telefono")
 	public String telephone;
 
-	@Column(name = "estado")
+	@Column(name = "estado", columnDefinition = "BIT")
 	public Boolean state;
 }
