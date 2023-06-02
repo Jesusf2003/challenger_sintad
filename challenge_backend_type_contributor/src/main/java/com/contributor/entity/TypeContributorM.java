@@ -12,7 +12,7 @@ public class TypeContributorM {
 
 	@Id
 	@Column(name = "id_tipo_contribuyente")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
 
 	@Column(name = "nombre")
