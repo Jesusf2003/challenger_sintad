@@ -1,4 +1,4 @@
-package com.document.entity;
+package com.contributor.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,22 +7,16 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tb_tipo_documento")
-public class TypeDocumentM {
+@Table(name = "tb_tipo_contribuyente")
+public class TypeContributorM {
 
 	@Id
-	@Column(name = "id_tipo_documento")
+	@Column(name = "id_tipo_contribuyente")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long id;
 
-	@Column(name = "codigo")
-	public String code;
-
 	@Column(name = "nombre")
 	public String name;
-
-	@Column(name = "descripcion")
-	public String description;
 
 	@Column(name = "estado", columnDefinition = "BIT")
 	public Boolean state;
