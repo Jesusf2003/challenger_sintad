@@ -16,8 +16,6 @@ import com.entity.entity.EntityRepository;
 import com.entity.entity.TypeContributorM;
 import com.entity.entity.TypeDocumentM;
 import com.entity.entity.dto.EntityDTO;
-import com.entity.feign.TypeContributorClient;
-import com.entity.feign.TypeDocumentClient;
 
 import lombok.AllArgsConstructor;
 
