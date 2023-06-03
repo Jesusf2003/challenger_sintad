@@ -8,6 +8,7 @@ import com.document.services.TypeDocumentService;
 
 import lombok.AllArgsConstructor;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/document")
 @AllArgsConstructor

@@ -1,6 +1,9 @@
 package com.entity.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
+
 import lombok.*;
 
 @Data
@@ -12,27 +15,32 @@ public class EntityM {
 
 	@Id
 	@Column(name = "id_entidad")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long id;
-	
-	@Column(name = "id_tipo_documento")
-	public Long idTypeDocument;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@OneToOne(targetEntity = TypeDocumentM.class)
+	@JoinColumn(name = "id_tipo_documento")
+	private TypeDocumentM idtypedoc;
+
 	@Column(name = "nro_documento")
-	public String nroDocument;
-	
+	private String nrodoc;
+
+	@Column(name = "razon_social")
+	private String socialreason;
+
 	@Column(name = "nombre_comercial")
-	public String tradename;
-	
-	@Column(name = "id_tipo_contribuyente")
-	public Long idTypeContributor;
+	private String tradename;
+
+	@OneToOne(targetEntity = TypeContributorM.class)
+	@JoinColumn(name = "id_tipo_contribuyente")
+	private TypeContributorM idtypecont;
 
 	@Column(name = "direccion")
-	public String address;
+	private String address;
 
 	@Column(name = "telefono")
-	public String telephone;
+	private String telephone;
 
 	@Column(name = "estado", columnDefinition = "BIT")
-	public Boolean state;
+	private Boolean state;
 }

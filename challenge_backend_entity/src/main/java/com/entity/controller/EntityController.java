@@ -1,20 +1,20 @@
-package com.contributor.controller;
+package com.entity.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.contributor.entity.TypeContributorM;
-import com.contributor.services.TypeContributorService;
+import com.entity.entity.dto.EntityDTO;
+import com.entity.services.EntityService;
 
 import lombok.AllArgsConstructor;
 
 @CrossOrigin(origins = "*")
+@RequestMapping("/entity")
 @RestController
-@RequestMapping("/contributor")
 @AllArgsConstructor
-public class TypeContributorController {
+public class EntityController {
 
-	private TypeContributorService service;
+	private EntityService service;
 
 	@GetMapping
 	public ResponseEntity<?> findAll() {
@@ -27,17 +27,17 @@ public class TypeContributorController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> save(@RequestBody TypeContributorM data) {
+	public ResponseEntity<?> save(@RequestBody EntityDTO data) {
 		return this.service.save(data);
 	}
 
 	@PostMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody TypeContributorM data) {
+	public ResponseEntity<?> update(@PathVariable(name = "id") Long id, @RequestBody EntityDTO data) {
 		return this.service.update(id, data);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable(name = "id") Long id) {
-		return this.service.setInactibe(id);
+	public ResponseEntity<?> delete(@PathVariable(name = "id")Long id) {
+		return this.service.setInactive(id);
 	}
 }
