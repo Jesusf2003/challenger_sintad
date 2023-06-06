@@ -1,16 +1,9 @@
 package com.auth.controller;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,6 +14,7 @@ import com.auth.services.UsersService;
 import lombok.AllArgsConstructor;
 
 @RestController
+@CrossOrigin(origins = "*")
 @AllArgsConstructor
 public class UsersController {
 	
