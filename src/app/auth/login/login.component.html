@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card border-0 shadow rounded-3 my-5">
+        <div class="card-body p-4 p-sm-5">
+          <h4 class="card-title text-center mb-3 fw-light fs-5">
+            Iniciar Sesión
+          </h4>
+          <h5 class="text-center mb-4">Sign in</h5>
+          <form>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingInput" [(ngModel)]="user" [ngModelOptions]="{standalone: true}">
+              <label for="floatingInput">User address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingPassword" [(ngModel)]="pswd" [ngModelOptions]="{standalone: true}">
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-login text-uppercase fw-bold" (click)="login();">
+                Sign in
+              </button>
+            </div>
+            <hr class="my-4">
+            <div align="left" style="padding-bottom: 10px;">
+              <p>¿No te has registrado aún? <a [routerLink]="['/register']"> Haz click aquí</a></p>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

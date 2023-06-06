@@ -18,12 +18,12 @@ export class DocumentCliService {
     return this.http.get<any>(this.url);
   }
 
-  save(data: ITypeDocument): Observable<any> {
-    return this.http.post<any>(this.url, data);
+  save(data: ITypeDocument): Observable<ITypeDocument> {
+    return this.http.post<ITypeDocument>(this.url, data);
   }
 
-  update(data: ITypeDocument): Observable<any> {
-    return this.http.post<any>(this.url+"/"+data.id, data);
+  update(data: ITypeDocument): Observable<ITypeDocument> {
+    return this.http.post<ITypeDocument>(this.url+"/"+data.id, data);
   }
 
   delete(id: number): Observable<any> {
