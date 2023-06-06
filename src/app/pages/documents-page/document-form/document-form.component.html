@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <div class="form-container">
+    <h3 class="title">{{documentService.documentSelected ? 'Actualizar' : 'Guardar'}}</h3>
+  </div>
+  <button type="button" class="btn-close" (click)="activeModalService.close();"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="documentForm" (ngSubmit)="isSelected()">
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Código" formControlName="code">
+      </div>
+      <div class="col-md-8">
+        <input type="text" class="form-control" placeholder="Documento" formControlName="name">
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md">
+        <textarea class="form-control" formControlName="description"></textarea>
+      </div>
+    </div>
+    <div class="row mb-auto">
+      <div class="col">
+        <button type="submit" class="btn btn-primary" [disabled]="documentForm.invalid">
+          {{documentService.documentSelected ? 'Actualizar' : 'Guardar'}}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
