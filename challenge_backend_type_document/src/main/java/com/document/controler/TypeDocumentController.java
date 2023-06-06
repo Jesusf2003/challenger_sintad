@@ -21,11 +21,6 @@ public class TypeDocumentController {
 		return this.service.getAll();
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<?> findById(@PathVariable(name = "id") Long id) {
-		return this.service.getById(id);
-	}
-
 	@PostMapping
 	public ResponseEntity<?> save(@RequestBody TypeDocumentM data) {
 		return this.service.save(data);

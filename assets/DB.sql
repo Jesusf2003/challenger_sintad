@@ -1,5 +1,14 @@
 SET FOREIGN_KEY_CHECKS=0;
 
+drop table if exists `tb_usuarios`;
+create table `tb_usuarios`(
+	`id_usuarios` int(11) not null auto_increment,
+	`nombre_usuario` varchar(50) not null,
+	`correo` varchar(50) not null,
+	`contrasena` varchar(50) not null,
+	primary key(`id_usuarios`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
 -- ----------------------------
 -- Table structure for tb_entidad
 -- ----------------------------
