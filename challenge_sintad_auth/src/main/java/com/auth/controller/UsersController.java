@@ -1,6 +1,7 @@
 package com.auth.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -17,7 +18,7 @@ import lombok.AllArgsConstructor;
 @CrossOrigin(origins = "*")
 @AllArgsConstructor
 public class UsersController {
-	
+
 	@Autowired
 	private RestTemplate restTemplate;
 
@@ -29,24 +30,57 @@ public class UsersController {
 	}
 
 	@GetMapping("/document")
-	public List<TypeDocumentDTO> getAll() {
-		ResponseEntity<List<TypeDocumentDTO>> res = restTemplate.exchange("http://localhost:8091/document", HttpMethod.GET, null, new ParameterizedTypeReference<List<TypeDocumentDTO>>() {});
+	public List<TypeDocumentDTO> getAllDocuments() {
+		ResponseEntity<List<TypeDocumentDTO>> res = restTemplate.exchange(
+				"http://localhost:8091/document", HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<TypeDocumentDTO>>() {
+				});
 		return res.getBody();
 	}
 
 	@PostMapping(value = "/document", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<TypeDocumentDTO> save(@RequestBody TypeDocumentDTO data) {
+	public ResponseEntity<TypeDocumentDTO> saveDocument(@RequestBody TypeDocumentDTO data) {
 		return restTemplate.postForEntity("http://localhost:8091/document", data, TypeDocumentDTO.class);
 	}
 
-	@PostMapping(value = "/document/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<TypeDocumentDTO> update(@PathVariable(name = "id")Long id, @RequestBody TypeDocumentDTO data) {
-		return restTemplate.postForEntity("http://localhost:8091/document/"+ id, data, TypeDocumentDTO.class);
+	@PutMapping(value = "/document/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<TypeDocumentDTO> updateDocument(@PathVariable(name = "id") Long id,
+			@RequestBody TypeDocumentDTO data) {
+		return restTemplate.postForEntity("http://localhost:8091/document" + "/" + id, data, TypeDocumentDTO.class);
 	}
 
 	@DeleteMapping(value = "/document/{id}")
-	public TypeDocumentDTO delete(@PathVariable(name = "id") Long id) {
-		ResponseEntity<TypeDocumentDTO> res = restTemplate.exchange("http://localhost:8091/document/"+ id, HttpMethod.DELETE, null, new ParameterizedTypeReference<TypeDocumentDTO>() {});
+	public TypeDocumentDTO deleteDocument(@PathVariable(name = "id") Long id) {
+		ResponseEntity<TypeDocumentDTO> res = restTemplate.exchange("http://localhost:8091/document" + "/" + id, HttpMethod.DELETE,
+				null, new ParameterizedTypeReference<TypeDocumentDTO>() {
+				});
+		return res.getBody();
+	}
+
+	@GetMapping("/contributor")
+	public List<TypeContributorDTO> getAllContributors() {
+		ResponseEntity<List<TypeContributorDTO>> res = restTemplate.exchange("http://localhost:8092/contributor", HttpMethod.GET,
+				null, new ParameterizedTypeReference<List<TypeContributorDTO>>() {
+				});
+		return res.getBody();
+	}
+
+	@PostMapping(value = "/contributor", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<TypeContributorDTO> saveContributor(@RequestBody TypeContributorDTO data) {
+		return restTemplate.postForEntity("http://localhost:8092/contributor", data, TypeContributorDTO.class);
+	}
+
+	@PostMapping(value = "/contributor/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<TypeContributorDTO> updateContributor(@PathVariable(name = "id") Long id,
+			@RequestBody TypeContributorDTO data) {
+		return restTemplate.postForEntity("http://localhost:8092/contributor" + "/" + id, data, TypeContributorDTO.class);
+	}
+
+	@DeleteMapping(value = "/contributor/{id}")
+	public TypeContributorDTO deleteContributor(@PathVariable(name = "id") Long id) {
+		ResponseEntity<TypeContributorDTO> res = restTemplate.exchange("http://localhost:8092/contributor" + "/" + id,
+				HttpMethod.DELETE, null, new ParameterizedTypeReference<TypeContributorDTO>() {
+				});
 		return res.getBody();
 	}
 
