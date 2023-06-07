@@ -10,6 +10,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DocumentFormComponent } from './documents-page/document-form/document-form.component';
+import { ContributorFormComponent } from './contributor-page/contributor-form/contributor-form.component';
+import { TableFilterPipe } from '../pipes/table-filter.pipe';
+import { EntityFormComponent } from './entity-page/entity-form/entity-form.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { DocumentFormComponent } from './documents-page/document-form/document-f
     MainComponent,
     EntityPageComponent,
     DashboardComponent,
-    DocumentFormComponent
+    DocumentFormComponent,
+    ContributorFormComponent,
+    TableFilterPipe,
+    EntityFormComponent
   ],
   imports: [
     CommonModule,

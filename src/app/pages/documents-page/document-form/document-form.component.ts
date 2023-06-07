@@ -12,7 +12,6 @@ import { ITypeDocument } from 'src/app/services/models/document.model';
 export class DocumentFormComponent implements OnInit, OnDestroy {
 
   public documentForm: FormGroup = new FormGroup({});
-  list: ITypeDocument[] = [];
   model: ITypeDocument = new ITypeDocument();
   edit: boolean = false;
 

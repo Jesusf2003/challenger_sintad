@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <div class="form-container">
+    <h3 class="title">{{contributorService.contributorSelected ? 'Actualizar' : 'Guardar'}}</h3>
+  </div>
+  <button type="button" class="btn-close" (click)="activeModalService.close();"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="contributorForm" (ngSubmit)="isSelected()">
+    <div class="row mb-4">
+      <div class="col-md-8">
+        <input type="text" class="form-control" placeholder="Nombre" formControlName="name">
+      </div>
+    </div>
+    <div class="row mb-auto">
+      <div class="col">
+        <button type="submit" class="btn btn-primary" [disabled]="contributorForm.invalid">
+          {{contributorService.contributorSelected ? 'Actualizar' : 'Guardar'}}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

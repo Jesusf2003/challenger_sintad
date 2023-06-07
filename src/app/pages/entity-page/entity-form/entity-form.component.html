@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <div class="form-container">
+    <h3 class="title">{{entityService.entitySelected ? 'Actualizar' : 'Guardar'}}</h3>
+  </div>
+  <button type="button" class="btn-close" (click)="activeModalService.close();"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="entityForm" (ngSubmit)="isSelected()">
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="Doc." formControlName="idtypedoc">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="N. doc" formControlName="nrodoc">
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Razón social" formControlName="socialreason">
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Nombre comercial" formControlName="tradename">
+      </div>
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Tipo contribuyente" formControlName="idtypecont">
+      </div>
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Teléfono" formControlName="telephone">
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-md">
+        <textarea class="form-control" formControlName="address"></textarea>
+      </div>
+    </div>
+    <div class="row mb-auto">
+      <div class="col">
+        <button type="submit" class="btn btn-primary" [disabled]="entityForm.invalid">
+          {{entityService.entitySelected ? 'Actualizar' : 'Guardar'}}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

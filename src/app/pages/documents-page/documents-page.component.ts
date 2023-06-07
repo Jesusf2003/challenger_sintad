@@ -14,22 +14,21 @@ export class DocumentsPageComponent implements OnInit {
 
   list: ITypeDocument[] = [];
   searchText!: string;
-  form!: DocumentFormComponent;
 
   constructor(
     private documentService: DocumentCliService,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.showAll();
   }
 
-  showAll():void {
+  showAll(): void {
     this.documentService.listAll().subscribe(
       (res: any) => {
         this.list = res;
-        console.log("Lista documentos: "+ res);
+        console.log("Lista documentos: " + res);
       }
     );
   }
@@ -40,32 +39,29 @@ export class DocumentsPageComponent implements OnInit {
         position: 'top-end',
         icon: 'success',
         title: 'El registro ha sido eliminado',
-        showConfirmButton: true,
-        timer: 1500
+        timer: 2000
       }
     ).then(
-      (res: any) => {
-        if (res.isConfirmed) {
-          this.documentService.delete(id).subscribe(
-            (data: any) => {
-              console.log(data);
-              this.ngOnInit();
-            },
-            (err: any) => {
-              console.log(err);
-            }
-          );
-        }
+      () => {
+        this.documentService.delete(id).subscribe(
+          (data: any) => {
+            console.log(data);
+            this.ngOnInit();
+          },
+          (err: any) => {
+            console.log(err);
+          }
+        );
       }
     );
   }
 
   openModal() {
-    this.modalService.open(DocumentFormComponent, {centered: true, backdrop: 'static'});
+    this.modalService.open(DocumentFormComponent, { centered: true, backdrop: 'static' });
   }
 
   editModal(data: any) {
-    this.modalService.open(DocumentFormComponent, {centered: true, backdrop: 'static'});
+    this.modalService.open(DocumentFormComponent, { centered: true, backdrop: 'static' });
     this.documentService.documentSelected = data;
   }
 }

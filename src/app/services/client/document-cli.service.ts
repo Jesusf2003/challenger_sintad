@@ -55,7 +55,7 @@ export class DocumentCliService {
           }
         )
       };
-      return this.http.post<any>(this.url+"/"+data.id, data, httpOptions);
+      return this.http.post<any>(this.authUrl+"/"+data.id, data, httpOptions);
     }
     return this.http.post<any>(this.url+"/"+data.id, data);
   }
@@ -70,7 +70,7 @@ export class DocumentCliService {
           }
         )
       };
-      return this.http.delete<any>(this.url+"/"+id, httpOptions);
+      return this.http.delete<any>(this.authUrl+"/"+id, httpOptions);
     }
     return this.http.delete<any>(this.url+"/"+id);
   }
