@@ -11,6 +11,9 @@ import org.springframework.web.client.RestTemplate;
 import com.auth.domain.*;
 import com.auth.domain.dto.*;
 import com.auth.services.UsersService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.AllArgsConstructor;
 
@@ -29,11 +32,20 @@ public class UsersController {
 		return service.getAll();
 	}
 
+	@PostMapping("/register")
+	public UsersM save(@RequestBody UsersM data) {
+		return service.save(data);
+	}
+
+	@PostMapping("/login")
+	public UsersDTO login(@RequestParam("user") String user, @RequestParam("pswd") String pswd) {
+		return service.login(user, pswd);
+	}
+
 	@GetMapping("/document")
 	public List<TypeDocumentDTO> getAllDocuments() {
-		ResponseEntity<List<TypeDocumentDTO>> res = restTemplate.exchange(
-				"http://localhost:8091/document", HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<TypeDocumentDTO>>() {
+		ResponseEntity<List<TypeDocumentDTO>> res = restTemplate.exchange("http://localhost:8091/document",
+				HttpMethod.GET, null, new ParameterizedTypeReference<List<TypeDocumentDTO>>() {
 				});
 		return res.getBody();
 	}
@@ -46,21 +58,21 @@ public class UsersController {
 	@PutMapping(value = "/document/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<TypeDocumentDTO> updateDocument(@PathVariable(name = "id") Long id,
 			@RequestBody TypeDocumentDTO data) {
-		return restTemplate.postForEntity("http://localhost:8091/document" + "/" + id, data, TypeDocumentDTO.class);
+		return restTemplate.postForEntity("http://localhost:8091/document/" + id, data, TypeDocumentDTO.class);
 	}
 
 	@DeleteMapping(value = "/document/{id}")
 	public TypeDocumentDTO deleteDocument(@PathVariable(name = "id") Long id) {
-		ResponseEntity<TypeDocumentDTO> res = restTemplate.exchange("http://localhost:8091/document" + "/" + id, HttpMethod.DELETE,
-				null, new ParameterizedTypeReference<TypeDocumentDTO>() {
+		ResponseEntity<TypeDocumentDTO> res = restTemplate.exchange("http://localhost:8091/document/" + id,
+				HttpMethod.DELETE, null, new ParameterizedTypeReference<TypeDocumentDTO>() {
 				});
 		return res.getBody();
 	}
 
 	@GetMapping("/contributor")
 	public List<TypeContributorDTO> getAllContributors() {
-		ResponseEntity<List<TypeContributorDTO>> res = restTemplate.exchange("http://localhost:8092/contributor", HttpMethod.GET,
-				null, new ParameterizedTypeReference<List<TypeContributorDTO>>() {
+		ResponseEntity<List<TypeContributorDTO>> res = restTemplate.exchange("http://localhost:8092/contributor",
+				HttpMethod.GET, null, new ParameterizedTypeReference<List<TypeContributorDTO>>() {
 				});
 		return res.getBody();
 	}
@@ -73,24 +85,14 @@ public class UsersController {
 	@PostMapping(value = "/contributor/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<TypeContributorDTO> updateContributor(@PathVariable(name = "id") Long id,
 			@RequestBody TypeContributorDTO data) {
-		return restTemplate.postForEntity("http://localhost:8092/contributor" + "/" + id, data, TypeContributorDTO.class);
+		return restTemplate.postForEntity("http://localhost:8092/contributor/" + id, data, TypeContributorDTO.class);
 	}
 
 	@DeleteMapping(value = "/contributor/{id}")
 	public TypeContributorDTO deleteContributor(@PathVariable(name = "id") Long id) {
-		ResponseEntity<TypeContributorDTO> res = restTemplate.exchange("http://localhost:8092/contributor" + "/" + id,
+		ResponseEntity<TypeContributorDTO> res = restTemplate.exchange("http://localhost:8092/contributor/" + id,
 				HttpMethod.DELETE, null, new ParameterizedTypeReference<TypeContributorDTO>() {
 				});
 		return res.getBody();
-	}
-
-	@PostMapping("/register")
-	public UsersM save(@RequestBody UsersM data) {
-		return service.save(data);
-	}
-
-	@PostMapping("/login")
-	public UsersDTO login(@RequestParam("user") String user, @RequestParam("pswd") String pswd) {
-		return service.login(user, pswd);
 	}
 }
